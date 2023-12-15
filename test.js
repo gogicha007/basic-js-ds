@@ -19,23 +19,24 @@ function convertArrayToList(arr) {
 
 function removeKFromList(l,k){
   let currNode = l;
-  console.log(currNode.value)
   let prevNode = null;
-  if(currNode.value === k){
-    prevNode = currNode.next;
-  } else {
-      while(currNode.value !== k) {
-        prevNode = currNode;
-        currNode = currNode.next;
-      }
-      prevNode.next = currNode.next;
+  while(currNode.next !== null){
+    if(currNode.value === k){
+      prevNode = currNode.next;
+      break
+    } else {
+        while(currNode.next !== null) {
+          prevNode = currNode;
+          currNode = currNode.next;
+        }
+        prevNode.next = currNode.next;
+    }
   }
-  return prevNode
+  return l
 }
 
 
-
-const initial = convertArrayToList([1, 2, 3, 3, 4, 5]);
+const initial = convertArrayToList([1,2, 3, 3, 4, 5]);
 console.log(removeKFromList(initial, 3))
 console.log(initial)
 
