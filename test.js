@@ -1,67 +1,26 @@
-class ListNode {
-  constructor(x) {
-    this.value = x;
-    this.next = null;
+class Stack {
+  constructor() {
+    this.items = [];
+  }
+  push(element) {
+    // console.log(element)
+    this.items.push(element);
+  }
+
+  pop() {
+    if (this.items.length === 0) return "undefined";
+    return this.items.pop();
+  }
+
+  peek() {
+    return this.items[this.items.length - 1];
   }
 }
 
-function convertArrayToList(arr) {
-  return arr.reverse().reduce((acc, cur) => {
-    if (acc) {
-      const node = new ListNode(cur);
-      node.next = acc;
-      return node;
-    }
-    return new ListNode(cur);
-  }, null);
-}
-
-function getSize(l) {
-  let size = 0;
-  let currNode = l;
-  while (currNode) {
-    currNode = currNode.next;
-    size++;
-  }
-  return size;
-}
-
-function countValue(l, k) {
-  let currNode = l;
-  let indexes = [];
-  let loop = 0;
-  while (currNode) {
-    if (currNode.value === k) {
-      indexes.push(loop);
-    }
-    currNode = currNode.next;
-    loop++;
-  }
-  return indexes;
-}
-
-
-function removeValue(l,k){
-  let currNode = l;
-  let loop = 0;
-  let prevNode;
-  while(currNode) {
-    if(currNode.value === k) {
-      if(loop === 0) {
-        l = currNode.next
-      } else {
-        prevNode.next = currNode.next
-      }
-    } else {
-      prevNode = currNode;
-    }
-    currNode = currNode.next
-    loop++
-  }
-  return l;
-}
-
-const initial = convertArrayToList([3, 2, 3, 3, 4, 5]);
-// console.log(countValue(initial, 3));
-// console.log(getSize(initial));
-console.log(removeValue(initial, 3))
+const stack = new Stack();
+console.log(stack);
+console.log(stack.push(5));
+console.log(stack.push(6));
+console.log(stack.push(7));
+console.log(stack.pop());
+console.log(stack.peek());
